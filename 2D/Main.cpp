@@ -1,40 +1,55 @@
+#include "Renderer.h"
+#include "Framebuffer.h"
+
 #include <SDL.h>
 #include <iostream>
 
 int main(int argc, char* argv[])
 {
-    // initialize SDL
-    if (SDL_Init(SDL_INIT_VIDEO) < 0)
+    Renderer renderer;
+    renderer.Initialize();
+    renderer.CreateWindow("2D", 800, 600);
+
+    Framebuffer framebuffer(renderer, 800, 600);
+
+    bool quit = false;
+
+    while (!quit)
     {
-        std::cerr << "Error initializing SDL: " << SDL_GetError() << std::endl;
-        return 1;
-    }
+        SDL_Event event;
+        while (SDL_PollEvent(&event))
+        {
+            if (event.type == SDL_QUIT)
+            {
+                quit = true;
+            }
+            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE)
+            {
+                quit = true;
+            }
+        }
 
-    // create window
-    // returns pointer to window if successful or nullptr if failed
-    SDL_Window* window = SDL_CreateWindow("Game Engine",
-        SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-        800, 600,
-        SDL_WINDOW_SHOWN);
-    if (window == nullptr)
-    {
-        std::cerr << "Error creating SDL window: " << SDL_GetError() << std::endl;
-        SDL_Quit();
-        return 1;
-    }
+        // SDL_SetRenderDrawColor(renderer.m_renderer, 0, 0, 0, 0);
+        // SDL_RenderClear(renderer.m_renderer);
 
-    // create renderer
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
+        framebuffer.Clear(color_t { 0, 0, 0, 255 });
 
-    while (true)
-    {
-        //ees
-        // clear screen
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
-        SDL_RenderClear(renderer);
 
-        // show screen
-        SDL_RenderPresent(renderer);
+        for (int i = 0; i < 50; i++)
+        {
+            int x = rand() % 200;
+            int y = rand() % 150;
+
+            framebuffer.DrawPoint(x, y, { 255, 255, 255, 255 });
+        }
+
+        //framebuffer.DrawRect();
+
+        framebuffer.Update();
+
+        renderer.CopyFramebuffer(framebuffer);
+
+        SDL_RenderPresent(renderer.m_renderer);
     }
 
     return 0;
