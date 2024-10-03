@@ -8,7 +8,7 @@ class Renderer
 {
 public:
 	bool Initialize();
-	bool CreateWindow(string name, int width, int height);
+	bool CreateWindow(std::string name, int width, int height);
 	void CopyFramebuffer(const Framebuffer& framebuffer);
 
 	void operator = (const class Framebuffer& framebuffer);

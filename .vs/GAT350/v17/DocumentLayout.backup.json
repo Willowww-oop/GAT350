@@ -42,9 +42,9 @@
               "Title": "Renderer.h",
               "DocumentMoniker": "C:\\Users\\aivazquez\\Desktop\\VisualStudioProjects\\C\u002B\u002B Projects\\Computer Graphics I\\GAT350\\2D\\Source\\Renderer.h",
               "RelativeDocumentMoniker": "2D\\Source\\Renderer.h",
-              "ToolTip": "C:\\Users\\aivazquez\\Desktop\\VisualStudioProjects\\C\u002B\u002B Projects\\Computer Graphics I\\GAT350\\2D\\Source\\Renderer.h",
-              "RelativeToolTip": "2D\\Source\\Renderer.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAACAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\aivazquez\\Desktop\\VisualStudioProjects\\C\u002B\u002B Projects\\Computer Graphics I\\GAT350\\2D\\Source\\Renderer.h*",
+              "RelativeToolTip": "2D\\Source\\Renderer.h*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-10-02T17:37:40.632Z",
               "EditorCaption": ""
@@ -59,8 +59,7 @@
               "RelativeToolTip": "2D\\Source\\Renderer.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-10-02T17:37:38.776Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-02T17:37:38.776Z"
             },
             {
               "$type": "Document",
@@ -72,8 +71,7 @@
               "RelativeToolTip": "2D\\Source\\Framebuffer.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-10-02T17:37:36.607Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-02T17:37:36.607Z"
             },
             {
               "$type": "Document",
@@ -85,8 +83,7 @@
               "RelativeToolTip": "2D\\Source\\Framebuffer.cpp",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAB8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-10-02T17:37:33.629Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-02T17:37:33.629Z"
             },
             {
               "$type": "Document",
@@ -98,8 +95,7 @@
               "RelativeToolTip": "2D\\Main.cpp",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAC0AAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-10-02T06:08:31.075Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-02T06:08:31.075Z"
             }
           ]
         }
