@@ -255,7 +255,7 @@ void Framebuffer::DrawFullCircle(int xc, int yc, int radius, const color_t& colo
 void Framebuffer::DrawImage(int x, int y, const Image& image)
 {
 	// check if off-screen
-	if (x + image.m_width < 0 || x >= image.m_width || y + image.m_height < 0 || y >= image.m_height) return;
+	if (x + image.m_width < 0 || x >= m_width || y + image.m_height < 0 || y >= m_height) return;
 
 	// iterate through image y
 	for (int iy = 0; iy < image.m_height; iy++)
@@ -263,7 +263,7 @@ void Framebuffer::DrawImage(int x, int y, const Image& image)
 		// set screen y 
 		int sy = y + iy;
 		// check if off-screen, don't draw if off-screen
-		if (sy < 0 || sy >= image.m_height) continue;
+		if (sy < 0 || sy >= m_height) continue;
 
 		// iterate through image x
 		for (int ix = 0; ix < image.m_width; ix++)
@@ -272,15 +272,15 @@ void Framebuffer::DrawImage(int x, int y, const Image& image)
 			// set screen x
 			int sx = x + ix;
 			// check if off-screen, don't draw if off-screen
-			if (sx < 0 || sx >= image.m_width) continue;
+			if (sx < 0 || sx >= m_width) continue;
 
 			// get image pixel color
-			color_t color = image.m_buffer[ix + iy * m_width];
+			color_t color = image.m_buffer[iy * image.m_width + ix];
 
 			// check alpha, if 0 don't draw
 			if (color.a == 0) continue;
 			// set buffer to color
-			m_buffer[sx + sy * m_width] = color;
+			m_buffer[sy * m_width + sx] = color;
 		}
 	}
 }

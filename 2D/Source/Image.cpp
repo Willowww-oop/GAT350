@@ -7,13 +7,13 @@
 bool Image::Load(const std::string& filename)
 {
 	// load image getting the width and height (pass 4 for the last parameter to create RGBA image)
-    std::ifstream file(filename);
-    if (!file.good())
-    {
-        std::cerr << "File not found: " << filename << std::endl;
-        return false;
-    }
-    file.close();
+    //std::ifstream file(filename);
+    //if (!file.good())
+    //{
+    //    std::cerr << "File not found: " << filename << std::endl;
+    //    return false;
+    //}
+    //file.close();
 
     // Load the image with stb_image
     int channels;
@@ -27,7 +27,7 @@ bool Image::Load(const std::string& filename)
 	m_buffer.resize(m_width * m_height);
 
 	// copy the image data into the buffer, !!takes in number of bytes to copy!! 
-	std::memcpy(m_buffer.data(), data, m_width * m_height * sizeof(color_t)); // https://en.cppreference.com/w/cpp/string/byte/memcpy
+	std::memcpy(m_buffer.data(), data, m_width * m_height * 4); // https://en.cppreference.com/w/cpp/string/byte/memcpy
 
 	// free the image data
 	stbi_image_free(data);
