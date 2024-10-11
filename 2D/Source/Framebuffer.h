@@ -26,7 +26,7 @@ public:
 	void DrawCubicCurve(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, const color_t& color);
 
 	void DrawImage(int x, int y, const class Image& image);
-	// void DrawImage(int x, int y, int w, int h, const class Image& image);
+	void DrawImage(int x, int y, int w, int h, const class Image& image);
 
 	friend class Renderer;
 

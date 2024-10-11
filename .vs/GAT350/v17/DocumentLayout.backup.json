@@ -7,23 +7,8 @@
       "RelativeMoniker": "D:0:0:{431DF823-903E-40DF-B2E2-434EF8CFC2C4}|2D\\2D.vcxproj|solutionrelative:2D\\Source\\Framebuffer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\include\\vector||{3B902123-F8A7-4915-9F01-361F908088D0}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{431DF823-903E-40DF-B2E2-434EF8CFC2C4}|2D\\2D.vcxproj|C:\\Users\\aivazquez\\Desktop\\VisualStudioProjects\\C\u002B\u002B Projects\\Computer Graphics I\\GAT350\\2D\\Source\\Image.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{431DF823-903E-40DF-B2E2-434EF8CFC2C4}|2D\\2D.vcxproj|solutionrelative:2D\\Source\\Image.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{431DF823-903E-40DF-B2E2-434EF8CFC2C4}|2D\\2D.vcxproj|C:\\Users\\aivazquez\\Desktop\\VisualStudioProjects\\C\u002B\u002B Projects\\Computer Graphics I\\GAT350\\2D\\Source\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{431DF823-903E-40DF-B2E2-434EF8CFC2C4}|2D\\2D.vcxproj|solutionrelative:2D\\Source\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{431DF823-903E-40DF-B2E2-434EF8CFC2C4}|2D\\2D.vcxproj|C:\\Users\\aivazquez\\Desktop\\VisualStudioProjects\\C\u002B\u002B Projects\\Computer Graphics I\\GAT350\\2D\\Source\\PostProcess.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{431DF823-903E-40DF-B2E2-434EF8CFC2C4}|2D\\2D.vcxproj|solutionrelative:2D\\Source\\PostProcess.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{431DF823-903E-40DF-B2E2-434EF8CFC2C4}|2D\\2D.vcxproj|C:\\Users\\aivazquez\\Desktop\\VisualStudioProjects\\C\u002B\u002B Projects\\Computer Graphics I\\GAT350\\2D\\Source\\PostProcess.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{431DF823-903E-40DF-B2E2-434EF8CFC2C4}|2D\\2D.vcxproj|solutionrelative:2D\\Source\\PostProcess.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{431DF823-903E-40DF-B2E2-434EF8CFC2C4}|2D\\2D.vcxproj|C:\\Users\\aivazquez\\Desktop\\VisualStudioProjects\\C\u002B\u002B Projects\\Computer Graphics I\\GAT350\\2D\\Source\\Framebuffer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -37,17 +22,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Main.cpp",
               "DocumentMoniker": "C:\\Users\\aivazquez\\Desktop\\VisualStudioProjects\\C\u002B\u002B Projects\\Computer Graphics I\\GAT350\\2D\\Source\\Main.cpp",
               "RelativeDocumentMoniker": "2D\\Source\\Main.cpp",
               "ToolTip": "C:\\Users\\aivazquez\\Desktop\\VisualStudioProjects\\C\u002B\u002B Projects\\Computer Graphics I\\GAT350\\2D\\Source\\Main.cpp",
               "RelativeToolTip": "2D\\Source\\Main.cpp",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAEoAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-10-03T18:49:25.346Z",
               "IsPinned": true,
@@ -59,67 +44,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "vector",
-              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\include\\vector",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\include\\vector",
-              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\include\\vector",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\include\\vector",
-              "ViewState": "AgIAAFQHAAAAAAAAAADgv2kHAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-10-10T17:48:50.487Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "PostProcess.h",
-              "DocumentMoniker": "C:\\Users\\aivazquez\\Desktop\\VisualStudioProjects\\C\u002B\u002B Projects\\Computer Graphics I\\GAT350\\2D\\Source\\PostProcess.h",
-              "RelativeDocumentMoniker": "2D\\Source\\PostProcess.h",
-              "ToolTip": "C:\\Users\\aivazquez\\Desktop\\VisualStudioProjects\\C\u002B\u002B Projects\\Computer Graphics I\\GAT350\\2D\\Source\\PostProcess.h",
-              "RelativeToolTip": "2D\\Source\\PostProcess.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABNAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-10-10T16:35:43.476Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PostProcess.cpp",
-              "DocumentMoniker": "C:\\Users\\aivazquez\\Desktop\\VisualStudioProjects\\C\u002B\u002B Projects\\Computer Graphics I\\GAT350\\2D\\Source\\PostProcess.cpp",
-              "RelativeDocumentMoniker": "2D\\Source\\PostProcess.cpp",
-              "ToolTip": "C:\\Users\\aivazquez\\Desktop\\VisualStudioProjects\\C\u002B\u002B Projects\\Computer Graphics I\\GAT350\\2D\\Source\\PostProcess.cpp",
-              "RelativeToolTip": "2D\\Source\\PostProcess.cpp",
-              "ViewState": "AgIAAMYAAAAAAAAAAAAAAN4AAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-10-10T16:35:28.37Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Image.cpp",
-              "DocumentMoniker": "C:\\Users\\aivazquez\\Desktop\\VisualStudioProjects\\C\u002B\u002B Projects\\Computer Graphics I\\GAT350\\2D\\Source\\Image.cpp",
-              "RelativeDocumentMoniker": "2D\\Source\\Image.cpp",
-              "ToolTip": "C:\\Users\\aivazquez\\Desktop\\VisualStudioProjects\\C\u002B\u002B Projects\\Computer Graphics I\\GAT350\\2D\\Source\\Image.cpp",
-              "RelativeToolTip": "2D\\Source\\Image.cpp",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAwBMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-10-10T04:38:02.676Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
               "Title": "Framebuffer.h",
               "DocumentMoniker": "C:\\Users\\aivazquez\\Desktop\\VisualStudioProjects\\C\u002B\u002B Projects\\Computer Graphics I\\GAT350\\2D\\Source\\Framebuffer.h",
               "RelativeDocumentMoniker": "2D\\Source\\Framebuffer.h",
               "ToolTip": "C:\\Users\\aivazquez\\Desktop\\VisualStudioProjects\\C\u002B\u002B Projects\\Computer Graphics I\\GAT350\\2D\\Source\\Framebuffer.h",
               "RelativeToolTip": "2D\\Source\\Framebuffer.h",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABwAAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-10-09T17:27:02.898Z"
+              "WhenOpened": "2024-10-09T17:27:02.898Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -129,7 +63,7 @@
               "RelativeDocumentMoniker": "2D\\Source\\Framebuffer.cpp",
               "ToolTip": "C:\\Users\\aivazquez\\Desktop\\VisualStudioProjects\\C\u002B\u002B Projects\\Computer Graphics I\\GAT350\\2D\\Source\\Framebuffer.cpp",
               "RelativeToolTip": "2D\\Source\\Framebuffer.cpp",
-              "ViewState": "AgIAAPoAAAAAAAAAAAAAwP4AAAA9AAAAAAAAAA==",
+              "ViewState": "AgIAADwBAAAAAAAAAAAAwFMBAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-10-09T17:27:01.051Z",
               "EditorCaption": ""

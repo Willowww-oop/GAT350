@@ -67,6 +67,7 @@ int main(int argc, char* argv[])
 
 
         framebuffer.DrawImage(100, 100, image);
+        framebuffer.DrawImage(10, 10, 400, 100, image);
 
         PostProcess::Brightness(framebuffer.m_buffer, 60);
         PostProcess::BoxBlur(framebuffer.m_buffer, framebuffer.m_width, framebuffer.m_height);

@@ -255,31 +255,98 @@ void Framebuffer::DrawFullCircle(int xc, int yc, int radius, const color_t& colo
 void Framebuffer::DrawImage(int x, int y, const Image& image)
 {
 	// check if off-screen
+
 	if (x + image.m_width < 0 || x >= m_width || y + image.m_height < 0 || y >= m_height) return;
 
 	// iterate through image y
+
 	for (int iy = 0; iy < image.m_height; iy++)
 	{
 		// set screen y 
+
 		int sy = y + iy;
 		// check if off-screen, don't draw if off-screen
+
 		if (sy < 0 || sy >= m_height) continue;
 
 		// iterate through image x
+
 		for (int ix = 0; ix < image.m_width; ix++)
 		{
 
 			// set screen x
+
 			int sx = x + ix;
 			// check if off-screen, don't draw if off-screen
+
 			if (sx < 0 || sx >= m_width) continue;
 
 			// get image pixel color
+
 			color_t color = image.m_buffer[iy * image.m_width + ix];
 
 			// check alpha, if 0 don't draw
+
 			if (color.a == 0) continue;
 			// set buffer to color
+
+			m_buffer[sy * m_width + sx] = color;
+		}
+	}
+}
+
+void Framebuffer::DrawImage(int x, int y, int w, int h, const Image& image)
+{
+	// Check if off-screen
+
+	if (x + w < 0 || x >= m_width || y + h < 0 || y >= m_height) return;
+
+	// Calculatscaling ratios
+
+	float x_ratio = static_cast<float>(image.m_width) / w;
+	float y_ratio = static_cast<float>(image.m_height) / h;
+
+	// Iterate over the target height using the height of the scaled image
+
+	for (int iy = 0; iy < h; iy++)
+	{
+		// Set screen y coordinate
+
+		int sy = y + iy;
+
+		// Check if off-screen vertically, don't draw if off-screen
+
+		if (sy < 0 || sy >= m_height) continue;
+
+		// Calculate the y in the source image
+
+		int srcy = static_cast<int>(iy * y_ratio);
+
+		// Iterate over the target width using the width of the scaled image
+
+		for (int ix = 0; ix < w; ix++)
+		{
+			// Set screen x coordinate
+
+			int sx = x + ix;
+			// Check if off-screen horizontally, don't draw if off-screen
+
+			if (sx < 0 || sx >= m_width) continue;
+
+			// Calculate the x in the source image
+
+			int srcx = static_cast<int>(ix * x_ratio);
+
+			// Get the pixel color from the source image with srcy and srcx
+
+			color_t color = image.m_buffer[srcy * image.m_width + srcx];
+
+			// Check alpha, if 0 don't draw
+
+			if (color.a == 0) continue;
+
+			// Set the framebuffer buffer to the color
+
 			m_buffer[sy * m_width + sx] = color;
 		}
 	}
