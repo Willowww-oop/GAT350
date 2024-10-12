@@ -32,6 +32,16 @@ void PostProcess::Monochrome(std::vector<color_t>& buffer)
 		});
 }
 
+void PostProcess::ColorBalance(std::vector<color_t>& buffer, int ro, int go, int bo)
+{
+	std::for_each(buffer.begin(), buffer.end(), [ro, go, bo](auto& color)
+		{
+			color.r = static_cast<uint8_t>(Clamp(color.r + ro, 0, 255));
+			color.g = static_cast<uint8_t>(Clamp(color.g + go, 0, 255));
+			color.b = static_cast<uint8_t>(Clamp(color.b + bo, 0, 255));
+		});
+}
+
 void PostProcess::Brightness(std::vector<color_t>& buffer, int brightness)
 {
 	std::for_each(buffer.begin(), buffer.end(), [brightness](auto& color)
@@ -40,6 +50,53 @@ void PostProcess::Brightness(std::vector<color_t>& buffer, int brightness)
 			color.r = static_cast<uint8_t>(Clamp(color.r + brightness, 0, 255));
 			color.g = static_cast<uint8_t>(Clamp(color.g + brightness, 0, 255));
 			color.b = static_cast<uint8_t>(Clamp(color.b + brightness, 0, 255));
+		});
+}
+
+void PostProcess::Noise(std::vector<color_t>& buffer, uint8_t noise)
+{
+	std::for_each(buffer.begin(), buffer.end(), [noise](auto& color)
+		{
+			int offset = (rand() % ((noise * 2) + 1)) - noise;
+
+			color.r = color.r + offset;
+			color.g = color.g + offset;
+			color.b = color.b + offset;
+		});
+}
+
+void PostProcess::Threshold(std::vector<color_t>& buffer, uint8_t threshold)
+{
+	std::for_each(buffer.begin(), buffer.end(), [threshold](auto& color)
+		{
+			uint8_t average = static_cast<uint8_t>((color.r + color.g + color.b) / 3);
+
+			if (average > threshold)
+			{
+				color.r = 255;
+				color.g = 255;
+				color.b = 255;
+			}
+
+			if (average < threshold)
+			{
+				color.r = 0;
+				color.g = 0;
+				color.b = 0;
+			}
+		});
+}
+
+void PostProcess::Posterize(std::vector<color_t>& buffer, uint8_t levels)
+{
+	uint8_t level = 255 / levels; 
+
+	std::for_each(buffer.begin(), buffer.end(), [level](auto& color)
+		{
+			color.r = (color.r / level) * level;
+			color.g = (color.g / level) * level;
+			color.b = (color.b / level) * level;
+			
 		});
 }
 
