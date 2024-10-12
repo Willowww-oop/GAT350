@@ -40,8 +40,8 @@ int main(int argc, char* argv[])
         SDL_GetMouseState(&mx, &my);
 
 
-        framebuffer.DrawImage(120, 200, image);
-        framebuffer.DrawImage(300, 10, 400, 100, image);
+        //framebuffer.DrawImage(120, 200, image);
+        framebuffer.DrawImage(0, 0, 800, 600, image);
 
         //PostProcess::Invert(framebuffer.m_buffer);
         //PostProcess::Monochrome(framebuffer.m_buffer);
@@ -49,9 +49,13 @@ int main(int argc, char* argv[])
         //PostProcess::Brightness(framebuffer.m_buffer, 50);
         //PostProcess::Noise(framebuffer.m_buffer, 80);
         //PostProcess::Threshold(framebuffer.m_buffer, 150);
-        PostProcess::Posterize(framebuffer.m_buffer, 6);
-
-        //PostProcess::BoxBlur(framebuffer.m_buffer, framebuffer.m_width, framebuffer.m_height);
+        //PostProcess::Posterize(framebuffer.m_buffer, 6);
+        
+        //PostProcess::BoxBlur(framebuffer.m_buffer, 800, 600);
+        //PostProcess::GaussianBlur(framebuffer.m_buffer, 800, 600);
+        //PostProcess::Sharpen(framebuffer.m_buffer, 500, 200);
+        //PostProcess::EdgeDetection(framebuffer.m_buffer, framebuffer.m_width, framebuffer.m_height, 20);
+        PostProcess::Emboss(framebuffer.m_buffer, framebuffer.m_width, framebuffer.m_height);
 
         framebuffer.Update();
 

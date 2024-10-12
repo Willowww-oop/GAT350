@@ -104,7 +104,7 @@ void PostProcess::BoxBlur(std::vector<color_t>& buffer, int width, int height)
 {
 	std::vector<color_t> source = buffer;
 
-	int k[3][3] =
+	int16_t k[3][3] =
 	{
 		{1, 1, 1},
 		{1, 1, 1},
@@ -148,7 +148,7 @@ void PostProcess::GaussianBlur(std::vector<color_t>& buffer, int width, int heig
 {
 	std::vector<color_t> source = buffer;
 
-	int k[3][3] =
+	int16_t k[3][3] =
 	{
 		{1, 2, 1},
 		{2, 4, 2},
@@ -227,12 +227,12 @@ void PostProcess::Sharpen(std::vector<color_t>& buffer, int width, int height)
 
 		color_t& color = buffer[i];
 		color.r = static_cast<uint8_t>(Clamp(r, 0, 255));
-		color.g = static_cast<uint8_t>(Clamp(r, 0, 255));
-		color.b = static_cast<uint8_t>(Clamp(r, 0, 255));
+		color.g = static_cast<uint8_t>(Clamp(g, 0, 255));
+		color.b = static_cast<uint8_t>(Clamp(b, 0, 255));
 	}
 }
 
-void PostProcess::Edge(std::vector<color_t>& buffer, int width, int height, int threshold)
+void PostProcess::EdgeDetection(std::vector<color_t>& buffer, int width, int height, int threshold)
 {
 	std::vector<color_t> source = buffer;
 
@@ -245,9 +245,9 @@ void PostProcess::Edge(std::vector<color_t>& buffer, int width, int height, int 
 
 	int vk[3][3] =
 	{
-		{1, 2, 1},
+		{-1, -2, -1},
 		{0, 0, 0},
-		{-1, -2, -1}
+		{1, 2, 1}
 	};
 
 	for (int i = 0; i < buffer.size(); i++)
@@ -283,3 +283,45 @@ void PostProcess::Edge(std::vector<color_t>& buffer, int width, int height, int 
 		color.b = c;
 	}
 }
+
+void PostProcess::Emboss(std::vector<color_t>& buffer, int width, int height)
+{
+	std::vector<color_t> source = buffer; 
+	int16_t k[3][3] = 
+	{
+		{-2, -1, 0},
+		{-1, 1, 1},
+		{0, 1, 2}
+	};
+
+	for (int i = 0; i < buffer.size(); i++)
+	{
+		int x = i % width;
+		int y = i / width;
+
+		if (x < 1 || x + 1 >= width || y < 1 || y + 1 >= height) continue;
+
+		int r = 0;
+		int g = 0;
+		int b = 0;
+
+		for (int iy = 0; iy < 3; iy++)
+		{
+			for (int ix = 0; ix < 3; ix++)
+			{
+				const color_t& pixel = source[(x + ix - 1) + (y + iy - 1) * width];
+
+				int weight = k[iy][ix];
+				r += pixel.r * weight;
+				g += pixel.g * weight;
+				b += pixel.b * weight;
+			}
+		}
+
+		color_t& color = buffer[i];
+		color.r = std::clamp(r + 128, 0, 255);
+		color.g = std::clamp(g + 128, 0, 255);
+		color.b = std::clamp(b + 128, 0, 255);
+	}
+}
+
