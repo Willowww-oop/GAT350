@@ -2,3 +2,6 @@
 .vs/
 Bin/
 Temp/
+*.vsidx
+*.vc.opendb
+*.ipch
