@@ -100,6 +100,14 @@ void PostProcess::Posterize(std::vector<color_t>& buffer, uint8_t levels)
 		});
 }
 
+void PostProcess::Alpha(std::vector<color_t>& buffer, uint8_t alpha)
+{
+	std::for_each(buffer.begin(), buffer.end(), [alpha](auto& color)
+		{
+			color.a = alpha;
+		});
+}
+
 void PostProcess::BoxBlur(std::vector<color_t>& buffer, int width, int height)
 {
 	std::vector<color_t> source = buffer;

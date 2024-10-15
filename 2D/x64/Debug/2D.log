@@ -1,2 +1,9 @@
-﻿  Main.cpp
+﻿  Color.cpp
+  Framebuffer.cpp
+  Image.cpp
+  Main.cpp
+  PostProcess.cpp
+C:\Users\aivazquez\Desktop\VisualStudioProjects\C++ Projects\Computer Graphics I\GAT350\2D\Source\PostProcess.cpp(282,9): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Renderer.cpp
+  Generating Code...
   2D.vcxproj -> C:\Users\aivazquez\Desktop\VisualStudioProjects\C++ Projects\Computer Graphics I\GAT350\x64\Debug\2D.exe

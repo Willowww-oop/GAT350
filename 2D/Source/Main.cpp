@@ -12,8 +12,13 @@ int main(int argc, char* argv[])
     Renderer renderer;
     renderer.Initialize();
     renderer.CreateWindow("2D", 800, 600);
+
     Image image;
     image.Load("image.png");
+
+    Image imageAlpha;
+    imageAlpha.Load("colors.png");
+    PostProcess::Alpha(imageAlpha.m_buffer, 128);
 
     Framebuffer framebuffer(renderer, 800, 600);
 
@@ -41,21 +46,14 @@ int main(int argc, char* argv[])
 
 
         //framebuffer.DrawImage(120, 200, image);
-        framebuffer.DrawImage(0, 0, 800, 600, image);
 
-        //PostProcess::Invert(framebuffer.m_buffer);
-        //PostProcess::Monochrome(framebuffer.m_buffer);
-        //PostProcess::ColorBalance(framebuffer.m_buffer, 150, -50, -50);
-        //PostProcess::Brightness(framebuffer.m_buffer, 50);
-        //PostProcess::Noise(framebuffer.m_buffer, 80);
-        //PostProcess::Threshold(framebuffer.m_buffer, 150);
-        //PostProcess::Posterize(framebuffer.m_buffer, 6);
-        
-        //PostProcess::BoxBlur(framebuffer.m_buffer, 800, 600);
-        //PostProcess::GaussianBlur(framebuffer.m_buffer, 800, 600);
-        //PostProcess::Sharpen(framebuffer.m_buffer, 500, 200);
-        //PostProcess::EdgeDetection(framebuffer.m_buffer, framebuffer.m_width, framebuffer.m_height, 20);
-        PostProcess::Emboss(framebuffer.m_buffer, framebuffer.m_width, framebuffer.m_height);
+        SetBlendMode(BlendMode::Alpha);
+
+        framebuffer.DrawImage(0, 0, 200, 150, image);
+
+        SetBlendMode(BlendMode::Normal);
+
+        framebuffer.DrawImage(200 , 200, imageAlpha);
 
         framebuffer.Update();
 
