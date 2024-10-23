@@ -24,6 +24,7 @@
     <ProjectGuid>{431df823-903e-40df-b2e2-434ef8cfc2c4}</ProjectGuid>
     <RootNamespace>My2D</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>2D</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -143,20 +144,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Actor.cpp" />
+    <ClCompile Include="Source\Camera.cpp" />
     <ClCompile Include="Source\Color.cpp" />
+    <ClCompile Include="Source\ETime.cpp" />
     <ClCompile Include="Source\Framebuffer.cpp" />
     <ClCompile Include="Source\Image.cpp" />
+    <ClCompile Include="Source\Input.cpp" />
     <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\Model.cpp" />
     <ClCompile Include="Source\PostProcess.cpp" />
     <ClCompile Include="Source\Renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Actor.h" />
+    <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\Color.h" />
+    <ClInclude Include="Source\ETime.h" />
     <ClInclude Include="Source\Image.h" />
+    <ClInclude Include="Source\Input.h" />
     <ClInclude Include="Source\MathUtils.h" />
     <ClInclude Include="Source\Framebuffer.h" />
+    <ClInclude Include="Source\Model.h" />
     <ClInclude Include="Source\PostProcess.h" />
+    <ClInclude Include="Source\Random.h" />
     <ClInclude Include="Source\Renderer.h" />
+    <ClInclude Include="Source\Transform.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

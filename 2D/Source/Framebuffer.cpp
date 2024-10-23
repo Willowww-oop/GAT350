@@ -42,13 +42,101 @@ void Framebuffer::DrawPoint(int x, int y, const color_t& color)
 
 void Framebuffer::DrawPointClip(int x, int y, const color_t& color)
 {
-	if (x < 0 || x > m_width || y < 0 || y > m_height) return;
+	if (x > (m_width - 1) || x < 0 || y > (m_height - 1) || y < 0 ) return;
 
 	color_t& dest = m_buffer[x + y * m_width];
 
 	dest = ColorBlend(color, dest);
 }
 
+void Framebuffer::DrawLine(int x1, int y1, int x2, int y2, const color_t& color)
+{
+	int dx = x2 - x1; 
+	int dy = y2 - y1; 
+
+	bool steep = (std::abs(dx) > std::abs(dy));
+
+	if (steep)
+	{
+		std::swap(x1, y1);
+		std::swap(x2, y2);
+	}
+
+	if (x1 > x2)
+	{
+		std::swap(x1, y1);
+		std::swap(x2, y2);
+	}
+
+	// recalculating deltas
+	dx = x2 - x1; 
+	dy = y2 - y1; 
+
+	// set error term and y step direction
+	int error = dx / 2;
+	int ystep = (y1 < y2) ? 1 : -1;
+
+	// draw line points
+	for (int x = x1, y = y1; x <= x2; x++)
+	{
+		(steep) ? DrawPoint(y, x, color) : DrawPoint(x, y, color);
+		DrawPointClip(x1, y, color);
+
+		// update error term
+		error -= dy;
+
+		if (error < 0)
+		{
+			y += ystep;
+			error += dx;
+		}
+	}
+}
+
+void Framebuffer::DrawLineSlope(int x1, int y1, int x2, int y2, const color_t& color)
+{
+	int dx = x2 - x1;
+	int dy = y2 - y1;
+
+	if (dx == 0) // Vertical line case
+	{
+		if (y1 > y2) std::swap(y1, y2); // Ensure we iterate upwards
+		for (int y = y1; y <= y2; y++) {
+			m_buffer[x1 + y * m_width] = color; // Vertical line (constant x)
+			DrawPointClip(x1, y, color);
+		}
+	}
+	else // Non-vertical line
+	{
+		float m = dy / (float)dx; // Slope
+		float b = y1 - (m * x1);  // Y-intercept
+
+		if (std::abs(dx) > std::abs(dy)) // Shallow slope
+		{
+			if (x1 > x2) { // Ensure left-to-right drawing
+				std::swap(x1, x2);
+				std::swap(y1, y2);
+			}
+			for (int x = x1; x <= x2; x++) {
+				int y = (int)round((m * x) + b);
+				m_buffer[x + y * m_width] = color;
+				DrawPointClip(x1, y, color);
+			}
+		}
+		else // Steep slope
+		{
+			if (y1 > y2) { // Ensure bottom-to-top drawing
+				std::swap(x1, x2);
+				std::swap(y1, y2);
+			}
+			for (int y = y1; y <= y2; y++) {
+				int x = (int)round((y - b) / m);
+				m_buffer[x + y * m_width] = color;
+				DrawPointClip(x1, y, color);
+			}
+		}
+	}
+}
 
 void Framebuffer::DrawLinearCurve(int x1, int y1, int x2, int y2, const color_t& color)
 {
@@ -111,93 +199,11 @@ void Framebuffer::DrawCubicCurve(int x1, int y1, int x2, int y2, int x3, int y3,
 	}
 }
 
-void Framebuffer::DrawLine(int x1, int y1, int x2, int y2, const color_t& color)
-{
-	int dx = x2 - x1; 
-	int dy = y2 - y1; 
-
-	bool steep = (std::abs(dx) > std::abs(dy));
-
-	if (steep)
-	{
-		std::swap(x1, y1);
-		std::swap(x2, y2);
-	}
-
-	if (x1 > x2)
-	{
-		std::swap(x1, y1);
-		std::swap(x2, y2);
-	}
-
-	// recalculating deltas
-	dx = x2 - x1; 
-	dy = y2 - y1; 
-
-	// set error term and y step direction
-	int error = dx / 2;
-	int ystep = (y1 < y2) ? 1 : -1;
-
-	// draw line points
-	for (int x = x1, y = y1; x <= x2; x++)
-	{
-		(steep) ? DrawPoint(y, x, color) : DrawPoint(x, y, color);
-
-		// update error term
-		error -= dy;
-
-		if (error < 0)
-		{
-			y += ystep;
-			error += dx;
-		}
-	}
-}
-
-void Framebuffer::DrawLineSlope (int x1, int y1, int x2, int y2, const color_t& color)
-{
-	int dx = x2 - x1; // run
-	int dy = y2 - y1; // rise
-
-	if (dx == 0)
-	{
-		if (y1 > y2) std::swap(y1, y2);
-		for (int y = y1; y < y2; y++)
-		{
-			m_buffer[x1 + y * m_width] = color;
-		}
-	}
-	else
-	{
-		float m = dy / (float)dx;
-
-		float b = y1 - (m * x1);
-
-		// draw line points
-
-		if (std::abs(dx) > std::abs(dy))
-		{
-			for (int x = x1; x <= x2; x++)
-			{
-				int y = (int)round((m * x) + b);
-				m_buffer[x + y * m_width] = color;
-			}
-		}
-		else
-		{
-			for (int y = y1; y <= y2; y++)
-			{
-				int x = (int)round((y - b) / m);
-				m_buffer[x + y * m_width] = color;
-			}
-		}
-	}
-}
 
 
 void Framebuffer::DrawTriangle(int x1, int y1, int x2, int y2, int x3, int y3, const color_t& color)
 {
-	DrawLineSlope(x1, y1, x2, y2, color);
+ 	DrawLineSlope(x1, y1, x2, y2, color);
 	DrawLineSlope(x2, y2, x3, y3, color);
 	DrawLineSlope(x3, y3, x1, y1, color);
 

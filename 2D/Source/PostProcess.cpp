@@ -297,9 +297,9 @@ void PostProcess::Emboss(std::vector<color_t>& buffer, int width, int height)
 	std::vector<color_t> source = buffer; 
 	int16_t k[3][3] = 
 	{
-		{-2, -1, 0},
-		{-1, 1, 1},
-		{0, 1, 2}
+		{0, 1, 0},
+		{0, 0, 0},
+		{0, -1, 0}
 	};
 
 	for (int i = 0; i < buffer.size(); i++)
@@ -327,9 +327,9 @@ void PostProcess::Emboss(std::vector<color_t>& buffer, int width, int height)
 		}
 
 		color_t& color = buffer[i];
-		color.r = std::clamp(r + 128, 0, 255);
-		color.g = std::clamp(g + 128, 0, 255);
-		color.b = std::clamp(b + 128, 0, 255);
+		color.r = static_cast <uint8_t>(std::clamp(r + 128, 0, 255));
+		color.g = static_cast <uint8_t>(std::clamp(g + 128, 0, 255));
+		color.b = static_cast <uint8_t>(std::clamp(b + 128, 0, 255));
 	}
 }
 

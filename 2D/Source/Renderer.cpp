@@ -21,6 +21,7 @@ bool Renderer::CreateWindow(std::string name, int width, int height)
     SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
     800, 600,
     SDL_WINDOW_SHOWN);
+
     if (m_window == nullptr)
     {
         std::cerr << "Error creating SDL window: " << SDL_GetError() << std::endl;
