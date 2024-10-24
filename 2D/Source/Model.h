@@ -1,5 +1,6 @@
 #pragma once
 #include "Color.h"
+#include <string>
 #include <glm/glm.hpp>
 #include <vector>
 
@@ -11,7 +12,9 @@ class Model
 public:
 	Model() = default;
 	Model(const vertices_t& vertices, const color_t& color) : m_vertices{ vertices }, m_color{ color } {}
-	 
+	bool Load(const std::string& filename);
+	void SetColor(const color_t& color);
+
 	void Draw(class Framebuffer& framebuffer, const glm::mat4& model, const class Camera& camera);
 	
 private:

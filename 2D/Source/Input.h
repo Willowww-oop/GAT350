@@ -18,7 +18,7 @@ public:
 	bool GetPreviousKeyDown(uint8_t key) { return m_prevKeyboardState[key]; }
 
 	glm::vec2 GetMousePosition() { return m_mousePosition; }
-	glm::vec2 GetMouseRelative() { return m_mousePosition - m_mouseRelative; }
+	glm::vec2 GetMouseRelative() { return m_mouseRelative; }
 
 	bool GetMouseButtonDown(uint8_t button) { return m_mouseButtonState[button]; }
 	bool GetPreviousMouseButtonDown(uint8_t button) { return m_prevMouseButtonState[button]; }

@@ -23,7 +23,7 @@ glm::vec3 Camera::ViewToProjection(const glm::vec3& position) const
 	return m_projection * glm::vec4{ position, 1 };
 }
 
-glm::ivec2 Camera::ToScreen(const glm::vec3& position) const
+glm::ivec2 Camera::ViewToScreen(const glm::vec3& position) const
 {
 	// convert point from view space to clip space (projection)
 	glm::vec4 clip = m_projection * glm::vec4{ position, 1 };
