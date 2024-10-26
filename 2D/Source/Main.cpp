@@ -50,7 +50,7 @@ int main(int argc, char* argv[])
 
 
     std::shared_ptr<Model> model = std::make_shared<Model>();
-    model->Load("torus.obj");
+    model->Load("cube.obj");
     model->SetColor({ 255, 255, 0, 255 });
 
     std::vector<std::unique_ptr<Actor>> actors;
@@ -118,7 +118,7 @@ int main(int argc, char* argv[])
 
             glm::vec3 offset = cameraTransform.GetMatrix() * glm::vec4{ direction, 0 };
 
-            cameraTransform.position += offset * 100.0f * time.GetDeltaTime();
+            cameraTransform.position += offset * 50.0f * time.GetDeltaTime();
 
         }
 
