@@ -27,12 +27,9 @@ int main(int argc, char* argv[])
 
     Time time;
 
-    //Image image;
-    //image.Load("image.png");
+    Image image;
+    image.Load("nightsky.png");
 
-    //Image imageAlpha;
-    //imageAlpha.Load("colors.png");
-    //PostProcess::Alpha(imageAlpha.m_buffer, 128);
     SetBlendMode(BlendMode::Normal);
 
     Framebuffer framebuffer(renderer, 800, 600);
@@ -50,20 +47,34 @@ int main(int argc, char* argv[])
 
 
     std::shared_ptr<Model> model = std::make_shared<Model>();
+    std::shared_ptr<Model> modelTwo = std::make_shared<Model>();
+    std::shared_ptr<Model> modelThree = std::make_shared<Model>();
+
     model->Load("cube.obj");
-    model->SetColor({ 255, 255, 0, 255 });
+    modelTwo->Load("sword.obj");
+    modelThree->Load("tree.obj");
+
+    model->SetColor( { 255, 255, 0, 255 } );
+    modelTwo->SetColor( { 225, 103, 0, 12 } );
+    modelThree->SetColor( {100, 25, 255, 60} );
 
     std::vector<std::unique_ptr<Actor>> actors;
 
     for (int i = 0; i < 2; i++) 
     {
-        Transform transform{ {randomf(-10.0f, 10.0f),randomf(-10.0f),0}, glm::vec3{0,randomf(-10.0f),45}, glm::vec3{3}};
-		std::unique_ptr<Actor> actor = std::make_unique<Actor>(transform, model);
-		actor->SetColor(color_t{ (uint8_t)random(256), (uint8_t)random(256), (uint8_t)random(256) });
-		actors.push_back(std::move(actor));
+        Transform transform { { 0, 5, 0 }, glm::vec3{0, 90, -180 }, glm::vec3{ 5 } };
+        Transform transformTwo { { 10, 5, 0 }, glm::vec3{0, 5, -180 }, glm::vec3{ 3 } };
+        Transform transformThree { { 100, 5, 0 }, glm::vec3{0, 5, -180 }, glm::vec3{ 5 } };
+
+        std::unique_ptr<Actor> actor = std::make_unique<Actor>(transform, model);
+        std::unique_ptr<Actor> actorTwo = std::make_unique<Actor>(transformTwo, modelTwo);
+        std::unique_ptr<Actor> actorThree = std::make_unique<Actor>(transformThree, modelThree);
+
+        actors.push_back(std::move(actor));
+        actors.push_back(std::move(actorTwo));
+        actors.push_back(std::move(actorThree));
     }
 
-    //Actor actor(transform, model);
 
 
 
@@ -93,11 +104,6 @@ int main(int argc, char* argv[])
         SDL_GetMouseState(&mx, &my);
 
 
-        //SetBlendMode(BlendMode::Normal);
-        //framebuffer.DrawImage(200, 200, 300, 250, image);
-
-
-        //SetBlendMode(BlendMode::Multiply);
         //framebuffer.DrawImage(100 , 100, imageAlpha);
 
 
@@ -113,12 +119,12 @@ int main(int argc, char* argv[])
             if (input.GetKeyDown(SDL_SCANCODE_W)) direction.z = 1;
             if (input.GetKeyDown(SDL_SCANCODE_S)) direction.z = -1;
 
-            cameraTransform.rotation.y += input.GetMouseRelative().x * 0.25f;
-            cameraTransform.rotation.x += input.GetMouseRelative().y * 0.25f;
+            cameraTransform.rotation.y += input.GetMouseRelative().x * 0.1f;
+            cameraTransform.rotation.x += input.GetMouseRelative().y * 0.1f;
 
             glm::vec3 offset = cameraTransform.GetMatrix() * glm::vec4{ direction, 0 };
 
-            cameraTransform.position += offset * 50.0f * time.GetDeltaTime();
+            cameraTransform.position += offset * 70.0f * time.GetDeltaTime();
 
         }
 
@@ -130,10 +136,14 @@ int main(int argc, char* argv[])
 
         camera.SetView(cameraTransform.position, cameraTransform.position + cameraTransform.GetForward());
 
+        framebuffer.DrawImage(0, 0, 800, 600, image);
+
         for(auto & actor : actors) 
         {
             actor->Draw(framebuffer, camera);
         }
+
+
 
         // model.Draw(framebuffer, transform.GetMatrix(), camera);
 

@@ -61,7 +61,7 @@ void Model::SetColor(const color_t& color)
 
 void Model::Draw(Framebuffer& framebuffer, const glm::mat4& model, const Camera& camera)
 {
-	for (int i = 0; i < m_vertices.size(); i += 3) 
+	for (int i = 0; (i + 2) < m_vertices.size(); i += 3)
 	{
 		// convert point from model space to world space space
 
