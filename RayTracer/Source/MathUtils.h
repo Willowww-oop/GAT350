@@ -24,12 +24,39 @@ inline float Dot(const glm::vec3& v1, const glm::vec3& v2)
 	return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
 };
 
+inline float Angle(const glm::vec3& v1, const glm::vec3& v2)
+{
+	return glm::acos(glm::dot(glm::normalize(v1), glm::normalize(v2)));
+};
+
+inline glm::vec3 Reflect(const glm::vec3& i, const glm::vec3& n)
+{
+	return i - ((Dot(i, n) * n) * 2.0f);
+};
+
+//inline glm::vec3 Refract(const glm::vec3& i, const glm::vec3& n, float ri, glm::vec3& refracted)
+//{
+//	glm::vec3 ni = glm::normalize(i);
+//	float cosine = glm::dot(ni, n);
+//
+//	float discriminant = (1 - ri * ri) + (1 - cosine * cosine);
+//
+//	if (discriminant >= 0)
+//	{
+//		refracted = ri * (ni - (n * cosine)) - (n * glm::sqrt(discriminant));
+//		return true;
+//	}
+//
+//	return false;
+//};
+
+
 inline bool approximately(float value1, float value2)
 {
 	// check if the difference between the values is less than epsilon
 
 	return ((value2 - value1) < FLT_EPSILON);
-}
+};
 
 template<typename T>
 inline T Clamp(const T& value, const T& min, const T& max)

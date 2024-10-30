@@ -28,7 +28,7 @@ void Camera::CalculateViewPlane()
 {
 	float theta = glm::radians(m_fov);
 
-	float halfHeight = glm::tan(theta * 0.5);
+	float halfHeight = (float)glm::tan(theta * 0.5);
 	float height = halfHeight * 2;
 	float width = height * m_aspectRatio;
 

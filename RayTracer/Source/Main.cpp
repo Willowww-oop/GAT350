@@ -38,18 +38,32 @@ int main(int argc, char* argv[])
 
 	Scene scene;
 
-	auto material2 = std::make_shared<Lambertian>(color3_t{ 0.0f, 0.0f, 1.0f });
+	std::shared_ptr<Lambertian> gray = std::make_shared<Lambertian>(color3_t{ 0.5f });
+	std::shared_ptr<Lambertian> red = std::make_shared<Lambertian>(color3_t{ 1, 0, 0 });
+	std::shared_ptr<Lambertian> blue = std::make_shared<Lambertian>(color3_t{ 0, 0, 1 });
+	std::vector<std::shared_ptr<Lambertian>> materials;
+	materials.push_back(red);
+	materials.push_back(blue);
+
+
+	/*auto material2 = std::make_shared<Lambertian>(color3_t{ 0.0f, 0.0f, 1.0f });
 	auto plane = std::make_unique<Plane>(glm::vec3{ 0, -5, 0 }, glm::vec3{ 0, 1, 0 }, material2);
-	scene.AddObject(std::move(plane));
+	scene.AddObject(std::move(plane));*/
+	
+	auto plane = std::make_unique<Plane>(glm::vec3{ 0, -5, 0 }, glm::vec3{ 0, 1, 0 }, gray); scene.AddObject(std::move(plane));
 
-	auto material = std::make_shared<Lambertian>(color3_t{ 0.0f, 1.0f, 0.0f });
-	auto object = std::make_unique<Sphere>(glm::vec3{ 0.0f }, 3.0f, material);
-	scene.AddObject(std::move(object));
+	for (int i = 0; i < 20; i++)
+	{
+		auto object = std::make_unique<Sphere>(random(glm::vec3{ -10 }, glm::vec3{ 10 }), randomf(0.2f, 3.0f), materials[random(0, (int)materials.size())]);
 
+		scene.AddObject(std::move(object));
 
-	framebuffer.Clear(ColorConvert(color4_t{ 0, 0.25f, 0, 255 }));
+	}
+
+	//framebuffer.Clear(ColorConvert(color4_t{ 0, 0.25f, 0, 255 }));
 	scene.Render(framebuffer, camera);
 
+	framebuffer.Update();
 
 	bool quit = false;
 	while (!quit)
@@ -70,7 +84,6 @@ int main(int argc, char* argv[])
 
 		//tracer.Render(framebuffer, camera);
 
-		framebuffer.Update();
 
 		renderer = framebuffer;
 		SDL_RenderPresent(renderer.m_renderer);

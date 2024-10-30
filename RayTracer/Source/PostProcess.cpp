@@ -279,7 +279,7 @@ void PostProcess::EdgeDetection(std::vector<color_t>& buffer, int width, int hei
 			}
 		}
 
-		int m = std::sqrt((h * h) + (v * v));
+		int m = (int)std::sqrt((h * h) + (v * v));
 
 		m = (m >= threshold) ? m : 0;
 
