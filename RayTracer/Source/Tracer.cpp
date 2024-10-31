@@ -2,6 +2,7 @@
 #include "Framebuffer.h"
 #include "Camera.h"
 #include "Color.h"
+#include "Material.h"
 #include "Scene.h"
 
 
@@ -31,7 +32,10 @@ color3_t Tracer::Trace(Scene& scene, const ray_t& ray, float minDistance, float 
 		{
 			return attentuation * Trace(scene, scatter, minDistance, maxDistance);
 		}
-
+		else
+		{
+			return raycastHit.material.lock()->GetEmissive();
+		}
 		//return raycastHit.material.lock()->GetColor();
 	}
 
