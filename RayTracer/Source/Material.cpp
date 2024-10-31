@@ -1,10 +1,10 @@
 #include "Material.h"
 #include "Random.h"
 
-bool Lambertian::Scatter(const ray_t& ray, const raycastHit_t& raycastHit, color3_t& attenuation, ray_t& scatter)
+bool Lambertian::Scatter(const ray_t& ray, const raycastHit_t& raycastHit, color3_t& attenuation, ray_t& scattered) const 
 {
-    scatter.origin = raycastHit.point;
-    scatter.direction = raycastHit.normal + randomOnUnitSphere();
+    scattered.origin = raycastHit.point;
+    scattered.direction = raycastHit.normal + randomOnUnitSphere();
 
     attenuation = m_albedo;
 
@@ -12,10 +12,15 @@ bool Lambertian::Scatter(const ray_t& ray, const raycastHit_t& raycastHit, color
 }
 
 
-/* bool Metal::Scatter(const ray_t& ray, const raycastHit_t& raycastHit, color3_t& attenuation, ray_t& scatter)
+bool Metal::Scatter(const ray_t& ray, const raycastHit_t& raycastHit, color3_t& attenuation, ray_t& scattered) const
 {
-    glm::vec3
-*/
+    glm::vec3 reflected = Reflect(ray.direction, raycastHit.normal);
+
+    scattered = ray_t{ raycastHit.point, reflected + (randomOnUnitSphere() * m_fuzz) };
+    attenuation = m_albedo;
+
+    return Dot(scattered.direction, raycastHit.normal) > 0; 
+}
 
 /* bool Dielectric::Scatter(const ray_t& ray, const raycastHit_t& raycastHit, color3_t& attenuation, )
 * {
@@ -28,7 +33,7 @@ bool Lambertian::Scatter(const ray_t& ray, const raycastHit_t& raycastHit, color
 *   {
 *       outNormal = raycastHit.normal;
 *       ni_over_nt = 1.0f / m_refractiveIndex;
-*       cosine = -glm::dot(ray.direction, raycastHit.normal) / ray.direction.length();
+*       cosine = -glm::dot(ray.direction, raycastHit.normal) / glm::length(ray.direction);
 *   }
 *   
 *   else
@@ -38,7 +43,7 @@ bool Lambertian::Scatter(const ray_t& ray, const raycastHit_t& raycastHit, color
 * 
 *       outNormal = -raycastHit.normal;
 *       ni_over_nt = 1.0f / m_refractiveIndex;
-*       cosine = m_refractiveIndex +  glm::dot(ray.direction, raycastHit.normal) / ray.direction.length();
+*       cosine = m_refractiveIndex +  glm::dot(ray.direction, raycastHit.normal) / glm::length(ray.direction);
 *   }
 * 
 *   glm::vec3 refracted;

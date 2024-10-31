@@ -39,7 +39,7 @@ inline glm::vec3 Reflect(const glm::vec3& i, const glm::vec3& n)
 //	glm::vec3 ni = glm::normalize(i);
 //	float cosine = glm::dot(ni, n);
 //
-//	float discriminant = (1 - ri * ri) + (1 - cosine * cosine);
+//	float discriminant = i - (ri * ri) * (1 - cosine * cosine);
 //
 //	if (discriminant >= 0)
 //	{
