@@ -7,7 +7,7 @@
 #include <iostream>
 
 
-void Scene::Render(Framebuffer& framebuffer, const Camera& camera, int numSamples)
+void Scene::Render(Framebuffer& framebuffer, const Camera& camera, int numSamples, int depth)
 {
 	for (int y = 0; y < framebuffer.m_height; y++) 
 	{
@@ -27,7 +27,7 @@ void Scene::Render(Framebuffer& framebuffer, const Camera& camera, int numSample
 
 				ray_t ray = camera.GetRay(point);
 				// accumulate colors from tracer
-				color = color + Tracer::Trace(*this, ray, 0.001f, 100.0f);
+				color = color + Tracer::Trace(*this, ray, 0.001f, 100.0f, depth);
 			}
 
 			//color4_t color = { 1,0,0,1 };
