@@ -160,6 +160,7 @@
     <ClCompile Include="Source\Scene.cpp" />
     <ClCompile Include="Source\Sphere.cpp" />
     <ClCompile Include="Source\Tracer.cpp" />
+    <ClCompile Include="Source\Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Actor.h" />
@@ -182,6 +183,7 @@
     <ClInclude Include="Source\Sphere.h" />
     <ClInclude Include="Source\Tracer.h" />
     <ClInclude Include="Source\Transform.h" />
+    <ClInclude Include="Source\Triangle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

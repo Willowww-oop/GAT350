@@ -11,6 +11,7 @@
 #include "Actor.h"
 #include "Random.h"
 #include "Tracer.h"
+#include "Triangle.h"
 #include "Scene.h"
 #include "Plane.h"
 
@@ -34,7 +35,7 @@ int main(int argc, char* argv[])
 	Framebuffer framebuffer(renderer, 800, 600);
 
 	Camera camera{ 70.0f, renderer.GetWidth() / (float)(renderer.GetHeight()) };
-	camera.SetView({ 0, 0, -20 }, { 0, 0, 0 });
+	camera.SetView({ 0, 0, -30 }, { 0, 0, 0 });
 
 	Scene scene;
 
@@ -48,24 +49,21 @@ int main(int argc, char* argv[])
 	materials.push_back(green);
 	materials.push_back(pink);
 	materials.push_back(blue);
-
-
-	/*auto material2 = std::make_shared<Lambertian>(color3_t{ 0.0f, 0.0f, 1.0f });
-	auto plane = std::make_unique<Plane>(glm::vec3{ 0, -5, 0 }, glm::vec3{ 0, 1, 0 }, material2);
-	scene.AddObject(std::move(plane));*/
 	
 	auto plane = std::make_unique<Plane>(glm::vec3{ 0, -5, 0 }, glm::vec3{ 0, 1, 0 }, gray); scene.AddObject(std::move(plane));
 
-	for (int i = 0; i < 20; i++)
-	{
-		auto object = std::make_unique<Sphere>(random(glm::vec3{ -10 }, glm::vec3{ 10 }), randomf(0.2f, 3.0f), materials[random(0, (int)materials.size())]);
+	auto object = std::make_unique<Sphere>(random(glm::vec3{ -10 }, glm::vec3{ 10 }), randomf(0.2f, 3.0f), materials[random(0, (int)materials.size())]);
+	scene.AddObject(std::move(object));
 
-		scene.AddObject(std::move(object));
+	auto triangle = std::make_unique<Triangle>(glm::vec3{ -10,0,0 }, glm::vec3{ -5,10,0 }, glm::vec3{ 0,0,0 }, green);
+	scene.AddObject(std::move(triangle));
 
-	}
+	//for (int i = 0; i < 20; i++)
+	//{
 
-	//framebuffer.Clear(ColorConvert(color4_t{ 0, 0.25f, 0, 255 }));
-	scene.Render(framebuffer, camera, 50, 100);
+	//}
+
+	scene.Render(framebuffer, camera, 10, 3);
 
 	framebuffer.Update();
 
@@ -85,9 +83,6 @@ int main(int argc, char* argv[])
 				quit = true;
 			}
 		}
-
-		//tracer.Render(framebuffer, camera);
-
 
 		renderer = framebuffer;
 		SDL_RenderPresent(renderer.m_renderer);
