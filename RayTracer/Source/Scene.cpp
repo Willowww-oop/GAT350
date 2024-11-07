@@ -49,7 +49,7 @@ void Scene::Render(Framebuffer& framebuffer, const Camera& camera, int numSample
 
 			framebuffer.DrawPoint(x, y, ColorConvert(color));
 		}
-		std::cout << "y: " << y << std::endl;
+		std::cout << "y: " << y << ":" << scanLineTimer.GetElapsedTime() << std::endl;
 	}
 
 	std::cout << "frame time: " << frameTimer.GetElapsedTime() << std::endl;

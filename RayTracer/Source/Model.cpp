@@ -68,13 +68,13 @@ bool Model::Load(const std::string& filename)
 				}
 				if (index[0]) {
 					glm::vec3 position = vertices[index[0] - 1];
-					m_vertices.push_back(position);
+					m_local_vertices.push_back(position);
 
 				}
 			}
 		}
 	}
-
+	m_vertices.resize(m_local_vertices.size());
 
 	stream.close();
 	return true;

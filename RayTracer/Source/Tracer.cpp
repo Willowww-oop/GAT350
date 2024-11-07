@@ -16,7 +16,7 @@ color3_t Tracer::Trace(Scene& scene, const ray_t& ray, float minDistance, float 
 
 	for (auto& object : scene.m_objects)
 	{
-		if (object->Hit(ray, raycastHit, minDistance, maxDistance))
+		if (object->Hit(ray, raycastHit, minDistance, closestDistance))
 		{
 			isHit = true;
 			closestDistance = raycastHit.distance;

@@ -11,14 +11,14 @@ bool Triangle::Hit(const ray_t& ray, raycastHit_t& raycastHit, float minDistance
 {
     float t;
     if (!Raycast(ray, m_v1, m_v2, m_v3, minDistance, maxDistance, t)) return false;
-        
-    // set raycast hit
-    raycastHit.distance = t;
-    raycastHit.point = ray.At(t);
 
     // set edges of the triangle
     glm::vec3 edge1 = m_v2 - m_v1;
     glm::vec3 edge2 = m_v3 - m_v1;
+  
+    // set raycast hit
+    raycastHit.distance = t;
+    raycastHit.point = ray.At(t);
 
     raycastHit.normal = glm::normalize(glm::cross(edge1, edge2));
     raycastHit.material = GetMaterial();

@@ -1,7 +1,16 @@
-﻿  PostProcess.cpp
+﻿  Actor.cpp
+  Camera.cpp
+  Color.cpp
+  ETime.cpp
+  Framebuffer.cpp
+  Image.cpp
+  Input.cpp
+  Main.cpp
+  Model.cpp
+  PostProcess.cpp
+  Renderer.cpp
   Generating code
-  0 of 793 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+  Previous IPDB not found, fall back to full compilation.
+  All 793 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   2D.vcxproj -> C:\Users\aivazquez\Desktop\VisualStudioProjects\C++ Projects\Computer Graphics I\GAT350\x64\Release\2D.exe

@@ -1,7 +1,64 @@
 ﻿  Main.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(389,75): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(389,75): warning C4244:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(389,75): warning C4244:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(389,75): warning C4244:             _Ty=int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(389,75): warning C4244:         ]
+  (compiling source file 'Source/Main.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(389,75):
+      the template instantiation context (the oldest one first) is
+          C:\Users\aivazquez\Desktop\VisualStudioProjects\C++ Projects\Computer Graphics I\GAT350\RayTracer\Source\Main.cpp(88,46):
+          see reference to function template instantiation 'std::shared_ptr<Emissive> std::make_shared<Emissive,color3_t,int>(color3_t &&,int &&)' being compiled
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(2906,46):
+          see reference to function template instantiation 'std::_Ref_count_obj2<Emissive>::_Ref_count_obj2<_Ty,int>(_Ty &&,int &&)' being compiled
+          with
+          [
+              _Ty=color3_t
+          ]
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(2095,18):
+          see reference to function template instantiation 'void std::_Construct_in_place<_Ty,glm::vec<3,float,glm::packed_highp>,int>(_Ty &,glm::vec<3,float,glm::packed_highp> &&,int &&) noexcept(false)' being compiled
+          with
+          [
+              _Ty=Emissive
+          ]
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(399,14):
+          see reference to function template instantiation '_Ty *std::construct_at<_Ty,glm::vec<3,float,glm::packed_highp>,int>(_Ty *const ,glm::vec<3,float,glm::packed_highp> &&,int &&) noexcept(<expr>)' being compiled
+          with
+          [
+              _Ty=Emissive
+          ]
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(403,82): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(403,82): warning C4244:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(403,82): warning C4244:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(403,82): warning C4244:             _Ty=int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(403,82): warning C4244:         ]
+  (compiling source file 'Source/Main.cpp')
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(390,90): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(390,90): warning C4244:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(390,90): warning C4244:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(390,90): warning C4244:             _Ty=int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(390,90): warning C4244:         ]
+  (compiling source file 'Source/Main.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(390,90):
+      the template instantiation context (the oldest one first) is
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(2095,18):
+          see reference to function template instantiation 'void std::_Construct_in_place<_Ty,glm::vec<3,float,glm::packed_highp>,int>(_Ty &,glm::vec<3,float,glm::packed_highp> &&,int &&) noexcept(false)' being compiled
+          with
+          [
+              _Ty=Emissive
+          ]
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(399,14):
+          see reference to function template instantiation '_Ty *std::construct_at<_Ty,glm::vec<3,float,glm::packed_highp>,int>(_Ty *const ,glm::vec<3,float,glm::packed_highp> &&,int &&) noexcept(false)' being compiled
+          with
+          [
+              _Ty=Emissive
+          ]
+  
   Generating code
-  1 of 786 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+  2 of 732 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   RayTracer.vcxproj -> C:\Users\aivazquez\Desktop\VisualStudioProjects\C++ Projects\Computer Graphics I\GAT350\x64\Release\RayTracer.exe

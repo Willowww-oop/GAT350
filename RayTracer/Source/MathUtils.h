@@ -8,6 +8,24 @@ inline T Lerp(const T& a, const T& b, float t)
 };
 
 
+inline bool approximately(float value1, float value2)
+{
+	// check if the difference between the values is less than epsilon
+
+	return (std::fabs((value2 - value1)) < FLT_EPSILON);
+};
+
+template<typename T>
+inline T Clamp(const T& value, const T& min, const T& max)
+{
+	return (value < min) ? min : (value > max) ? max : value;
+};
+
+inline float Dot(const glm::vec3& v1, const glm::vec3& v2)
+{
+	return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
+};
+
 inline glm::vec3 Cross(const glm::vec3& v1, const glm::vec3& v2)
 {
 	glm::vec3 result;
@@ -19,10 +37,6 @@ inline glm::vec3 Cross(const glm::vec3& v1, const glm::vec3& v2)
 	return result;
 };
 
-inline float Dot(const glm::vec3& v1, const glm::vec3& v2)
-{
-	return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
-};
 
 inline float Angle(const glm::vec3& v1, const glm::vec3& v2)
 {
@@ -31,40 +45,35 @@ inline float Angle(const glm::vec3& v1, const glm::vec3& v2)
 
 inline glm::vec3 Reflect(const glm::vec3& i, const glm::vec3& n)
 {
-	return i - ((Dot(i, n) * n) * 2.0f);
+	return i - ((glm::dot(i, n) * n) * 2.0f);
 };
 
-//inline glm::vec3 Refract(const glm::vec3& i, const glm::vec3& n, float ri, glm::vec3& refracted)
-//{
-//	glm::vec3 ni = glm::normalize(i);
-//	float cosine = glm::dot(ni, n);
-//
-//	float discriminant = i - (ri * ri) * (1 - cosine * cosine);
-//
-//	if (discriminant >= 0)
-//	{
-//		refracted = ri * (ni - (n * cosine)) - (n * glm::sqrt(discriminant));
-//		return true;
-//	}
-//
-//	return false;
-//};
-
-
-inline bool approximately(float value1, float value2)
+inline bool Refract(const glm::vec3& i, const glm::vec3& n, float ri, glm::vec3& refract)
 {
-	// check if the difference between the values is less than epsilon
+	glm::vec3 ni = glm::normalize(i);
 
-	return ((value2 - value1) < FLT_EPSILON);
-};
+	float cosine = glm::dot(ni, n);
 
-template<typename T>
-inline T Clamp(const T& value, const T& min, const T& max)
+	float discriminant = 1 - (ri * ri) * (1 - cosine * cosine);
+	if (discriminant > 0) {
+		//bruh
+		refract = ri * (ni - (n * cosine)) - (n * glm::sqrt(discriminant));
+		return true;
+	}
+	return false;
+}
+inline float Schlick(float cosine, float index)
 {
-	return (value < min) ? min : (value > max) ? max : value;
+	// Step 1: Calculate the base reflectance at zero incidence (angle = 0)
+	// This is the reflection coefficient when the light hits the surface straight on
+	float r0 = (1.0f - index) / (1.0f + index);
+	r0 = r0 * r0;
+
+	// Step 2: Use Schlick's approximation to adjust reflectance based on angle
+	// Schlick’s approximation gives the probability of reflection at an angle cosine
+	// It interpolates between r0 and 1, with stronger reflection at glancing angles
+	return r0 + (1.0f - r0) * (float)std::pow((1.0f - cosine), 5);
 };
-
-
 
 inline void QuadraticPoint(int x1, int y1, int x2, int y2, int x3, int y3, float t, int& x, int& y)
 {
