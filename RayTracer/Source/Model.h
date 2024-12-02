@@ -7,7 +7,7 @@
 #include <vector>
 
 using vertex_t = glm::vec3;
-using vertices_t = std::vector<vertex_t>;
+using vertexbuffer_t = std::vector<vertex_t>;
 
 class Model : public SceneObject
 {
@@ -16,7 +16,7 @@ public:
 	Model(const Transform& transform, std::shared_ptr<Material> material) :
 		SceneObject{ transform, material }
 	{}
-	Model(const vertices_t& vertices, std::shared_ptr<Material> material) : SceneObject{ material }, m_vertices{ vertices } {}
+	Model(const vertexbuffer_t& vertices, std::shared_ptr<Material> material) : SceneObject{ material }, m_vertices{ vertices } {}
 
 	void Update() override;
 
@@ -27,9 +27,9 @@ public:
 	bool Hit(const ray_t& ray, raycastHit_t& raycastHit, float minDistance, float maxDistance) override;
 
 private:
-	vertices_t m_vertices;
+	vertexbuffer_t m_vertices;
 	color_t m_color{ 0 };
-	vertices_t m_local_vertices;
+	vertexbuffer_t m_local_vertices;
 
 	glm::vec3 m_center{ 0 };
 	float m_radius{ 0 };

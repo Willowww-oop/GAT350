@@ -42,11 +42,11 @@ int main(int argc, char* argv[])
 
 	Scene scene;
 
+	//InitScene(scene);
 	InitScene(scene);
-	//InitScene01(scene, camera);
 
 	scene.Update();
-	scene.Render(framebuffer, camera, 200, 10);
+	scene.Render(framebuffer, camera, 10, 6);
 
 	framebuffer.Update();
 
@@ -122,7 +122,7 @@ void InitScene(Scene& scene)
 
 void InitScene01(Scene& scene, Camera& camera)
 {
-	camera.SetFOV(20.0f);
+	camera.SetFOV(60.0f);
 	camera.SetView({ 13, 2, 3 }, { 0, 0, 0 });
 
 	auto ground_material = std::make_shared<Lambertian>(color3_t(0.5f));
@@ -132,6 +132,7 @@ void InitScene01(Scene& scene, Camera& camera)
 	{
 		for (int b = -11; b < 11; b++) 
 		{
+
 			auto choose_mat = randomf();
 			glm::vec3 center(a + 0.9 * randomf(), 0.2, b + 0.9 * randomf());
 
@@ -172,4 +173,9 @@ void InitScene01(Scene& scene, Camera& camera)
 		
 	auto material3 = std::make_shared<Metal>(color3_t(0.7f, 0.6f, 0.5f), 0.0f);
 	scene.AddObject(std::make_unique<Sphere>(Transform{ glm::vec3{ 4, 1, 0 } }, 1.0f, material3));
+
+	//auto material4 = std::make_shared<Emissive>(color3_t(0.5, 0.2f, 0.8f), 2);
+	//auto cube = std::make_unique<Model>(Transform{ glm::vec3{ 13, 5, 2 }, glm::vec3{ 45, 45, 45 }}, material4 );
+	//cube->Load("cube.obj");
+	//scene.AddObject(std::move(cube));
 }

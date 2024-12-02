@@ -39,7 +39,7 @@ bool Model::Load(const std::string& filename)
 		std::cerr << "Error loading your model: " << filename << std::endl;
 		return false;
 	}
-	vertices_t vertices;
+	vertexbuffer_t vertices;
 	std::string line;
 	while (std::getline(stream, line)) {
 		if (line.substr(0, 2) == "v ") {

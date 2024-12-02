@@ -10,6 +10,7 @@
 #include "Camera.h" 
 #include "Actor.h"
 #include "Random.h"
+#include "Shader.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <SDL.h>
@@ -40,48 +41,46 @@ int main(int argc, char* argv[])
 
     Transform cameraTransform{ { 0, 0, -20  } };
 
+    // Shader
 
-    //vertices_t vertices = { { -5, 5, 0}, { 5, 5, 0 }, { -5, -5, 0} };
-    //Model model(vertices, { 0, 255, 0, 255 });
+    VertexShader::uniforms.view = camera.GetView();
+    VertexShader::uniforms.projection = camera.GetProjection();
+    VertexShader::uniforms.light.position = glm::vec3{ 10, 10, -10 };
+    VertexShader::uniforms.light.direction = glm::vec3{ 0, -1, 0 }; // light pointing down
+    VertexShader::uniforms.light.color = color3_t{ 1 }; // white light
+    VertexShader::uniforms.ambient = color3_t{ 0.01f };
 
+    Shader::framebuffer = &framebuffer;
 
+    // Models
 
     std::shared_ptr<Model> model = std::make_shared<Model>();
     std::shared_ptr<Model> modelTwo = std::make_shared<Model>();
     std::shared_ptr<Model> modelThree = std::make_shared<Model>();
 
-    model->Load("cube.obj");
-    modelTwo->Load("sword.obj");
-    modelThree->Load("tree.obj");
+    // Actors
 
-    model->SetColor({ 255, 255, 0, 255 });
-    modelTwo->SetColor({ 225, 103, 0, 12 });
-    modelThree->SetColor({ 100, 25, 255, 60 });
+    model->Load("cube.obj");
+    //modelTwo->Load("sword.obj");
+    //modelThree->Load("tree.obj");
+
+    model->SetColor({ 0, 0, 1, 1 });
+    /*modelTwo->SetColor({ 225, 103, 0, 12 });
+    modelThree->SetColor({ 100, 25, 255, 60 });*/
 
     std::vector<std::unique_ptr<Actor>> actors;
 
-    for (int i = 0; i < 2; i++)
-    {
-        Transform transform{ { 0, 5, 0 }, glm::vec3{0, 90, -180 }, glm::vec3{ 5 } };
-        Transform transformTwo{ { 10, 5, 0 }, glm::vec3{0, 5, -180 }, glm::vec3{ 3 } };
-        Transform transformThree{ { 100, 5, 0 }, glm::vec3{0, 5, -180 }, glm::vec3{ 5 } };
-
-        std::unique_ptr<Actor> actor = std::make_unique<Actor>(transform, model);
-        std::unique_ptr<Actor> actorTwo = std::make_unique<Actor>(transformTwo, modelTwo);
-        std::unique_ptr<Actor> actorThree = std::make_unique<Actor>(transformThree, modelThree);
-
-        actors.push_back(std::move(actor));
-        actors.push_back(std::move(actorTwo));
-        actors.push_back(std::move(actorThree));
-    }
+    Transform transform{ glm::vec3{ 0 }, glm::vec3{ 0 }, glm::vec3{ 5 } };
+    std::unique_ptr<Actor> actor = std::make_unique<Actor>(transform, model);
+    actors.push_back(std::move(actor));
 
 
 
 
     bool quit = false;
 
-    while (!quit)
-    {
+        while (!quit)
+        {
         time.Tick();
         input.Update();
 
@@ -135,12 +134,14 @@ int main(int argc, char* argv[])
         }
 
         camera.SetView(cameraTransform.position, cameraTransform.position + cameraTransform.GetForward());
+        VertexShader::uniforms.view = camera.GetView();
 
         framebuffer.DrawImage(0, 0, 800, 600, image);
 
         for (auto& actor : actors)
         {
-            actor->Draw(framebuffer, camera);
+            actor->GetTransform().rotation.y += time.GetDeltaTime() * 90;
+            actor->Draw();
         }
 
 
