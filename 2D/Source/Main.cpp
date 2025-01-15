@@ -43,12 +43,12 @@ int main(int argc, char* argv[])
 
     // Shader
 
-    VertexShader::uniforms.view = camera.GetView();
-    VertexShader::uniforms.projection = camera.GetProjection();
-    VertexShader::uniforms.light.position = glm::vec3{ 10, 10, -10 };
-    VertexShader::uniforms.light.direction = glm::vec3{ 0, -1, 0 }; // light pointing down
-    VertexShader::uniforms.light.color = color3_t{ 1 }; // white light
-    VertexShader::uniforms.ambient = color3_t{ 0.01f };
+    Shader::uniforms.view = camera.GetView();
+    Shader::uniforms.projection = camera.GetProjection();
+    Shader::uniforms.light.position = glm::vec3{ 10, 10, -10 };
+    Shader::uniforms.light.direction = glm::vec3{ 0, -1, 0 }; // light pointing down
+    Shader::uniforms.light.color = color3_t{ 1 }; // white light
+    Shader::uniforms.ambient = color3_t{ 0.01f };
 
     Shader::framebuffer = &framebuffer;
 
@@ -60,7 +60,7 @@ int main(int argc, char* argv[])
 
     // Actors
 
-    model->Load("cube.obj");
+    model->Load("models/ogre.obj");
     //modelTwo->Load("sword.obj");
     //modelThree->Load("tree.obj");
 
@@ -134,7 +134,7 @@ int main(int argc, char* argv[])
         }
 
         camera.SetView(cameraTransform.position, cameraTransform.position + cameraTransform.GetForward());
-        VertexShader::uniforms.view = camera.GetView();
+        Shader::uniforms.view = camera.GetView();
 
         framebuffer.DrawImage(0, 0, 800, 600, image);
 

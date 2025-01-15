@@ -40,5 +40,5 @@ inline void CubicPoint(int x1, int y1, int x2, int y2, int x3, int y3, int x4, i
 
 inline float cross(const glm::vec2& a, const glm::vec2& b)
 {
-	return glm::cross(glm::vec3{ a.x, a.y, 0 }, glm::vec3{ b.x, b.y, 0 }).z;
+	return a.x * b.y - b.x * a.y;
 };

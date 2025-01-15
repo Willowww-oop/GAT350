@@ -2,7 +2,17 @@
 #include "Framebuffer.h"
 #include "Rasterizer.h"
 
+Shader::uniforms_t Shader::uniforms =
+{
+	glm::mat4{ 1 },// model
+	glm::mat4{ 1 }, // view
+	glm::mat4{ 1 }, // projection
+	color3_t{ 1 }
+};
+
 Framebuffer* Shader::framebuffer{ nullptr };
+Shader::eFrontFace Shader::front_face = Shader::eFrontFace::CCW;
+Shader::eCullMode Shader::cull_mode = Shader::eCullMode::BACK;
 
 void Shader::Draw(const vertexbuffer_t& vb)
 {
@@ -31,9 +41,21 @@ void Shader::Draw(const vertexbuffer_t& vb)
 		if (!ToScreen(v1, s1)) continue;
 		if (!ToScreen(v2, s2)) continue;
 
-		//float z = cross(c1 - c0, c2 - c0);
+		float z = cross(s1 - s0, s2 - s0);
 
-		//if (cull_mode == BACK && front_face == CCW && z < 0) continue;
+		if (std::fabs(z) < std::numeric_limits<float>::epsilon()) continue;
+
+		switch (cull_mode)
+		{
+		case Shader::FRONT:	
+			if (front_face == CCW && z > 0) continue;
+			if (front_face == CW && z < 0) continue;
+		case Shader::BACK:
+			if (cull_mode == CCW && z > 0) continue;
+			if (cull_mode == CW && z < 0) continue;
+		case Shader::NONE:
+			continue;
+		} 
 
 		// rasterization
 

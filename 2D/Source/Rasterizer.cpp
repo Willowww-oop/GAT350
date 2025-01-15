@@ -4,6 +4,16 @@
 
 namespace Rasterizer
 {
+	bool CheckDepth(Framebuffer& framebuffer, const glm::vec2& position, float z)
+	{
+		return (z < framebuffer.GetDepth()[position.x, position.y, framebuffer.m_width]);
+	}
+
+	void WriteDepth(Framebuffer& framebuffer, const glm::vec2& position, float z)
+	{
+		framebuffer.GetDepth()[position.x, position.y, framebuffer.m_width] = z;
+	}
+
 	void Triangle(Framebuffer& framebuffer,
 		const glm::vec2& p0,
 		const glm::vec2& p1,
@@ -43,12 +53,20 @@ namespace Rasterizer
 				{
 					// interpolate vertex attributes
 					
-					color3_t color = w0 * v0.color + w1 * v1.color + w2 * v2.color;
+
+					color3_t color = w0 * v0.color + w1 * v1.color + w2 * v2.color;	
 					float z = w0 * v0.position.z + w1 * v1.position.z + w2 * v2.position.z;	
+
+					if (CheckDepth(framebuffer, p, z))
+					{
+						WriteDepth(framebuffer, p, z);
+					}
 
 					// create fragment shader input
 					fragment_input_t fragment;
 
+					// fragment.position = w0 * v0.position + w1 * v1.position + w2 * v2.position;
+					// fragment.normal = w0 * v0.position + w1 * v1.position + w2 * v2.position;
 					fragment.color = color4_t{ color, 1 };
 					
 					// call fragment shader
@@ -58,5 +76,4 @@ namespace Rasterizer
 			}
 		}
 	}
-
 }

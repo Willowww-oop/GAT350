@@ -7,6 +7,9 @@ class Framebuffer;
 
 namespace Rasterizer
 {
+	bool CheckDepth(Framebuffer& framebuffer, const glm::vec2& position, float z);
+	void WriteDepth(Framebuffer& framebuffer, const glm::vec2& position, float z);
+
 	void Triangle(Framebuffer& framebuffer,
 		const glm::vec2& p0,
 		const glm::vec2& p1,
